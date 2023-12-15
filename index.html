@@ -12,11 +12,11 @@
 </head>
 
 <body>
-  <button onclick="playMusic()">播放音乐</button>
-  <audio id="myAudio" controls>
-    <source src="123.mp3" type="audio/mp3">
+  <audio id="birthdayAudio" autoplay>
+    <source src="your-audio-file.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
+
   <div class="container">
     <div class="one">
       <h1 class="one">
@@ -134,9 +134,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <script type="application/javascript" src="script/main.js"></script>
 <script>
-  function playMusic() {
-      var audio = document.getElementById("myAudio");
-      audio.play();
-  }
+  // 在页面加载完成后触发
+  window.addEventListener('load', function() {
+      // 获取音频元素
+      var audio = document.getElementById('birthdayAudio');
+
+      // 检查浏览器是否支持音频元素
+      if (audio) {
+          // 播放音频
+          audio.play().catch(function(error) {
+              // 自动播放被浏览器阻止时的处理
+              console.error('自动播放被阻止:', error);
+          });
+      }
+  });
 </script>
 </html>
